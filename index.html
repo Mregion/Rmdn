@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lebanese Desserts — Ramadan</title>
+  <title>Lebanese Desserts — Ramadan Menu</title>
 
   <style>
     :root{
@@ -18,320 +18,241 @@
       --shadow: 0 18px 45px rgba(0,0,0,0.55);
       --radius: 18px;
     }
+
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
       color:var(--text);
       min-height:100vh;
       padding:26px 18px 56px;
 
-      /* Ramadan vibe background (no images needed) */
+      /* Global Ramadan vibe */
       background:
-        radial-gradient(900px 520px at 12% 10%, rgba(246,211,101,0.22), transparent 60%),
-        radial-gradient(820px 520px at 88% 18%, rgba(253,160,133,0.18), transparent 62%),
+        radial-gradient(900px 520px at 12% 10%, rgba(246,211,101,0.25), transparent 60%),
+        radial-gradient(820px 520px at 88% 18%, rgba(253,160,133,0.20), transparent 62%),
         radial-gradient(900px 650px at 50% 96%, rgba(99,102,241,0.12), transparent 62%),
         linear-gradient(180deg, var(--bg1), var(--bg2));
-      position: relative;
-      overflow-x:hidden;
     }
 
-    /* subtle islamic pattern overlay */
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      opacity:0.22;
-      background-image:
-        radial-gradient(circle at 12px 12px, rgba(246,211,101,0.22) 2px, transparent 2.2px),
-        radial-gradient(circle at 38px 38px, rgba(253,160,133,0.18) 2px, transparent 2.2px);
-      background-size: 50px 50px;
-      mix-blend-mode: screen;
-    }
-
-    /* hanging lantern glow blobs */
-    .lanterns{
-      position:fixed;
-      top:-40px;
-      left:0; right:0;
-      height:220px;
-      pointer-events:none;
-      opacity:0.9;
-      background:
-        radial-gradient(120px 160px at 18% 30%, rgba(246,211,101,0.18), transparent 70%),
-        radial-gradient(110px 150px at 48% 20%, rgba(253,160,133,0.14), transparent 70%),
-        radial-gradient(130px 170px at 78% 34%, rgba(246,211,101,0.16), transparent 72%);
-      filter: blur(2px);
-    }
-
-    .wrap{max-width:1100px;margin:0 auto; position:relative;}
+    .wrap{max-width:1100px;margin:0 auto;}
 
     .hero{
-      border: 1px solid var(--line);
-      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-      box-shadow: var(--shadow);
-      border-radius: 26px;
-      padding: 20px 18px;
-      overflow:hidden;
-      position:relative;
+      border:1px solid var(--line);
+      background:linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      box-shadow:var(--shadow);
+      border-radius:26px;
+      padding:22px 20px;
+      margin-bottom:18px;
     }
-    .hero::after{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background:
-        radial-gradient(520px 260px at 15% 25%, rgba(246,211,101,0.18), transparent 60%),
-        radial-gradient(520px 260px at 85% 35%, rgba(253,160,133,0.14), transparent 60%);
-      filter: blur(12px);
-      opacity:0.9;
-      pointer-events:none;
-    }
-    .hero-inner{position:relative; display:flex; gap:14px; flex-wrap:wrap; align-items:flex-start; justify-content:space-between;}
+
     .badge{
-      width:fit-content;
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-      padding:7px 12px;
+      display:inline-block;
+      padding:7px 14px;
       border-radius:999px;
       font-size:13px;
+      font-weight:800;
       color:#111827;
-      background: linear-gradient(90deg, var(--gold), var(--gold2));
-      font-weight: 900;
-      letter-spacing:0.2px;
-      box-shadow: 0 12px 30px rgba(246,211,101,0.14);
+      background:linear-gradient(90deg,var(--gold),var(--gold2));
     }
+
     h1{
-      margin:8px 0 6px;
-      font-size: 28px;
-      line-height:1.1;
+      margin:10px 0 6px;
+      font-size:28px;
       letter-spacing:-0.3px;
     }
+
     .sub{
       margin:0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.45;
-      max-width: 720px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.45;
     }
 
     .meta{
+      margin-top:10px;
       display:flex;
       gap:10px;
       flex-wrap:wrap;
-      justify-content:flex-end;
-      align-items:center;
-      margin-top: 4px;
     }
+
     .pill{
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.05);
-      padding:10px 12px;
-      border-radius: 999px;
-      font-size: 13px;
-      color: var(--muted);
-      display:flex;
-      gap:8px;
-      align-items:center;
-      white-space: nowrap;
-    }
-    .dot{
-      width:8px;height:8px;border-radius:50%;
-      background: linear-gradient(180deg, var(--gold), var(--gold2));
-      box-shadow: 0 0 0 3px rgba(246,211,101,0.14);
+      border:1px solid var(--line);
+      background:rgba(255,255,255,0.05);
+      padding:9px 14px;
+      border-radius:999px;
+      font-size:13px;
+      color:var(--muted);
     }
 
     .grid{
-      margin-top: 16px;
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
     }
-    @media (max-width: 900px){ .grid{ grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 560px){
-      .grid{ grid-template-columns: 1fr; }
-      h1{ font-size: 24px; }
+
+    @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:560px){
+      .grid{grid-template-columns:1fr}
+      h1{font-size:24px}
     }
 
     .card{
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.03));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg,var(--card),rgba(255,255,255,0.03));
+      box-shadow:0 14px 30px rgba(0,0,0,0.35);
       overflow:hidden;
-      box-shadow: 0 14px 30px rgba(0,0,0,0.35);
     }
 
     .imgwrap{
       position:relative;
-      aspect-ratio: 4 / 3;
-      background: rgba(255,255,255,0.06);
-      overflow:hidden;
+      aspect-ratio:4/3;
     }
+
     .imgwrap img{
       width:100%;
       height:100%;
-      object-fit: cover;
+      object-fit:cover;
       display:block;
     }
+
     .overlay{
       position:absolute;
       inset:0;
-      background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.75));
+      background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,0.8));
     }
-    .ramadan-tag{
-      position:absolute;
-      top:10px; left:10px;
-      padding:7px 10px;
-      border-radius:999px;
-      font-size:12px;
-      font-weight:900;
-      color:#111827;
-      background: linear-gradient(90deg, var(--gold), var(--gold2));
-    }
+
     .info{
       position:absolute;
-      left:12px; right:12px; bottom:10px;
+      left:12px;
+      right:12px;
+      bottom:10px;
       display:flex;
       justify-content:space-between;
-      gap:10px;
       align-items:flex-end;
     }
+
     .name{
+      font-weight:900;
+      font-size:15px;
       margin:0;
-      font-weight: 950;
-      letter-spacing:0.2px;
-      font-size: 15px;
-      line-height:1.15;
     }
+
     .price{
-      font-weight: 950;
-      font-size: 14px;
-      padding:7px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.10);
-      white-space:nowrap;
+      font-weight:900;
+      font-size:14px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.2);
     }
+
     .desc{
-      padding: 12px 12px 14px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.45;
-      border-top: 1px solid rgba(255,255,255,0.06);
+      padding:12px;
+      font-size:13px;
+      color:var(--muted);
+      border-top:1px solid rgba(255,255,255,0.06);
     }
 
     footer{
-      margin-top: 14px;
-      color: rgba(203,213,225,0.82);
-      font-size: 12px;
+      margin-top:14px;
       text-align:center;
+      font-size:12px;
+      color:rgba(203,213,225,0.8);
     }
   </style>
 </head>
 
 <body>
-  <div class="lanterns"></div>
+<div class="wrap">
 
-  <div class="wrap">
-    <section class="hero">
-      <div class="hero-inner">
-        <div>
-          <div class="badge">🌙 Lebanese Desserts</div>
-          <h1>Ramadan Menu</h1>
-          <p class="sub">
-            <strong>Réservation :</strong> 2–3 jours à l’avance. <br/>
-            <strong>Note :</strong> les commandes sont confirmées selon la charge de travail et la disponibilité.
-          </p>
-        </div>
+  <section class="hero">
+    <span class="badge">🌙 Lebanese Desserts</span>
+    <h1>Ramadan Menu</h1>
+    <p class="sub">
+      Orders require <strong>2–3 days advance reservation</strong>.<br>
+      Availability may vary depending on demand.
+    </p>
 
-        <div class="meta">
-          <div class="pill"><span class="dot"></span> Fait maison</div>
-          <div class="pill">📍 Nantes</div>
-          <div class="pill">🕒 Soir & week-end</div>
+    <div class="meta">
+      <div class="pill">Homemade</div>
+      <div class="pill">Nantes</div>
+    </div>
+  </section>
+
+  <section class="grid">
+
+    <div class="card">
+      <div class="imgwrap">
+        <img src="images/1.jpg">
+        <div class="overlay"></div>
+        <div class="info">
+          <p class="name">Halwet el Jeben</p>
+          <span class="price">20€</span>
         </div>
       </div>
-    </section>
+      <div class="desc">Elegant platter, perfect for iftar gatherings.</div>
+    </div>
 
-    <section class="grid">
-      <!-- 1 -->
-      <article class="card">
-        <div class="imgwrap">
-          <img src="images/1.jpg" alt="Halwet el Jeben" />
-          <div class="overlay"></div>
-          <div class="ramadan-tag">Ramadan</div>
-          <div class="info">
-            <p class="name">Halwet el Jeben</p>
-            <span class="price">20€</span>
-          </div>
+    <div class="card">
+      <div class="imgwrap">
+        <img src="images/2.jpg">
+        <div class="overlay"></div>
+        <div class="info">
+          <p class="name">Osmlaye Soniye</p>
+          <span class="price">2€ / piece</span>
         </div>
-        <div class="desc">Plateau — présentation élégante, idéal pour l’iftar.</div>
-      </article>
+      </div>
+      <div class="desc">Price per piece — ideal for mixed boxes.</div>
+    </div>
 
-      <!-- 2 -->
-      <article class="card">
-        <div class="imgwrap">
-          <img src="images/2.jpg" alt="Osmlaye Soniye" />
-          <div class="overlay"></div>
-          <div class="ramadan-tag">Ramadan</div>
-          <div class="info">
-            <p class="name">Osmlaye Soniye</p>
-            <span class="price">2€ / pièce</span>
-          </div>
+    <div class="card">
+      <div class="imgwrap">
+        <img src="images/3.jpg">
+        <div class="overlay"></div>
+        <div class="info">
+          <p class="name">Mfroket Fosto2</p>
+          <span class="price">25€</span>
         </div>
-        <div class="desc">Prix indiqué par pièce — parfait en assortiment.</div>
-      </article>
+      </div>
+      <div class="desc">Premium pistachio dessert.</div>
+    </div>
 
-      <!-- 3 -->
-      <article class="card">
-        <div class="imgwrap">
-          <img src="images/3.jpg" alt="Mfroket Fosto2" />
-          <div class="overlay"></div>
-          <div class="ramadan-tag">Ramadan</div>
-          <div class="info">
-            <p class="name">Mfroket Fosto2</p>
-            <span class="price">25€</span>
-          </div>
+    <div class="card">
+      <div class="imgwrap">
+        <img src="images/4.jpg">
+        <div class="overlay"></div>
+        <div class="info">
+          <p class="name">Atyef 3asfir</p>
+          <span class="price">15€ / platter</span>
         </div>
-        <div class="desc">Plateau — pistache (fosto2), goût riche et premium.</div>
-      </article>
+      </div>
+      <div class="desc">Approximately 15–17 pieces per platter.</div>
+    </div>
 
-      <!-- 4 -->
-      <article class="card">
-        <div class="imgwrap">
-          <img src="images/4.jpg" alt="Atyef 3asfir" />
-          <div class="overlay"></div>
-          <div class="ramadan-tag">Ramadan</div>
-          <div class="info">
-            <p class="name">Atyef 3asfir</p>
-            <span class="price">15€ / plateau</span>
-          </div>
+    <div class="card">
+      <div class="imgwrap">
+        <img src="images/5.jpg">
+        <div class="overlay"></div>
+        <div class="info">
+          <p class="name">Atyb m2leye (jbne / ashta / joz)</p>
+          <span class="price">18€ / dozen</span>
         </div>
-        <div class="desc">Environ 15–17 pièces par plateau (selon la taille).</div>
-      </article>
+      </div>
+      <div class="desc">Cheese, cream & walnut selection.</div>
+    </div>
 
-      <!-- 5 -->
-      <article class="card">
-        <div class="imgwrap">
-          <img src="images/5.jpg" alt="Atyb m2leye" />
-          <div class="overlay"></div>
-          <div class="ramadan-tag">Ramadan</div>
-          <div class="info">
-            <p class="name">Atyb m2leye (jbne / ashta / joz)</p>
-            <span class="price">18€ / douzaine</span>
-          </div>
-        </div>
-        <div class="desc">Mix : fromage (jbne), crème (ashta), noix (joz).</div>
-      </article>
-    </section>
+  </section>
 
-    <footer>
-      © <span id="year"></span> — Lebanese Desserts • Ramadan Edition
-    </footer>
-  </div>
+  <footer>
+    © <span id="y"></span> — Lebanese Desserts · Ramadan Edition
+  </footer>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+</div>
+
+<script>
+  document.getElementById("y").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
