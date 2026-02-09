@@ -17,6 +17,11 @@
       --gold2:#fda085;
       --shadow: 0 18px 45px rgba(0,0,0,0.58);
       --radius: 18px;
+
+      /* capture size (change via buttons) */
+      --cap-w: 1400px;
+      --cap-h: 780px;
+      --cap-scale: 1;
     }
 
     *{box-sizing:border-box}
@@ -26,7 +31,7 @@
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
       color:var(--text);
       min-height:100vh;
-      padding:26px 18px 42px;
+      padding:22px 18px 26px;
       overflow-x:hidden;
 
       /* richer Ramadan night base */
@@ -61,7 +66,6 @@
       opacity:0.55;
       animation: twinkle 6.5s ease-in-out infinite alternate;
     }
-
     @keyframes twinkle{
       0%{opacity:0.35; filter: blur(0px);}
       100%{opacity:0.62; filter: blur(0.4px);}
@@ -81,20 +85,18 @@
       animation: drift 26s ease-in-out infinite alternate;
       mix-blend-mode: screen;
     }
-
     @keyframes drift{
       0%{ transform: translateY(-10px) translateX(-10px) scale(1); }
       100%{ transform: translateY(16px) translateX(12px) scale(1.02); }
     }
 
-    /* decorative lanterns + crescent (top corners) */
+    /* decorative lanterns + crescents */
     .sky-decor{
       position:fixed;
       inset:0;
       pointer-events:none;
       z-index:-1;
     }
-
     .lantern{
       position:absolute;
       top:-8px;
@@ -108,12 +110,10 @@
     .lantern.l1{left:6%;}
     .lantern.l2{left:45%; opacity:0.58; animation-duration:6.3s;}
     .lantern.l3{right:7%; opacity:0.66; animation-duration:5.9s;}
-
     @keyframes sway{
       0%{ transform: rotate(-2deg) translateY(0); }
       100%{ transform: rotate(2deg) translateY(2px); }
     }
-
     .crescent{
       position:absolute;
       top:18px;
@@ -128,9 +128,57 @@
       filter: drop-shadow(0 18px 28px rgba(253,160,133,0.14));
     }
 
+    /* ===== Controls (not included in download) ===== */
+    .topbar{
+      max-width: 1400px;
+      margin: 0 auto 12px auto;
+      display:flex;
+      justify-content:flex-end;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      border:1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      padding:10px 12px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 13px;
+      cursor:pointer;
+      backdrop-filter: blur(6px);
+    }
+    .btn:hover{ background: rgba(255,255,255,0.10); }
+    .btn.primary{
+      border-color: rgba(246,211,101,0.35);
+      background: linear-gradient(90deg, rgba(246,211,101,0.20), rgba(253,160,133,0.14));
+    }
+
+    /* ===== Capture area sizing + fit-to-screen ===== */
+    .stage{
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+    }
+    .capture-wrap{
+      transform: scale(var(--cap-scale));
+      transform-origin: top center;
+    }
+    #capture{
+      width: var(--cap-w);
+      height: var(--cap-h);
+      padding: 22px 22px 22px;
+      border-radius: 28px;
+      /* subtle frame so it looks premium when downloaded */
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.10);
+      backdrop-filter: blur(2px);
+      overflow: hidden;
+    }
+
+    /* ===== Your existing layout (inside capture) ===== */
     .wrap{max-width:1100px;margin:0 auto;}
 
-    /* HERO */
     .hero{
       border:1px solid var(--line);
       background:linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
@@ -146,10 +194,6 @@
       grid-template-columns: 1.4fr 1fr;
       gap: 14px;
       align-items: start;
-    }
-
-    @media (max-width: 820px){
-      .hero-inner{ grid-template-columns: 1fr; }
     }
 
     .badge{
@@ -211,17 +255,17 @@
       line-height:1.55;
     }
 
-    /* CARDS LAYOUT (fixes empty gap with 5 items) */
+    /* grid uses flex so last row centers (no missing 6th look) */
     .grid{
       display:flex;
       flex-wrap:wrap;
       gap:14px;
-      justify-content:center; /* centers last row (no empty 6th spot look) */
+      justify-content:center;
     }
 
     .card{
-      flex: 1 1 320px;     /* responsive: 1,2,3 per row based on width */
-      max-width: 360px;    /* keeps nice proportions */
+      flex: 1 1 320px;
+      max-width: 360px;
       border:1px solid var(--line);
       border-radius:var(--radius);
       background:linear-gradient(180deg,var(--card),rgba(255,255,255,0.04));
@@ -230,7 +274,6 @@
       backdrop-filter: blur(4px);
     }
 
-    /* Highlight card (for Osmaliye) */
     .card.highlight{
       border-color: rgba(246,211,101,0.55);
       box-shadow:
@@ -301,6 +344,11 @@
       color:var(--muted);
       border-top:1px solid rgba(255,255,255,0.07);
       line-height:1.45;
+    }
+
+    /* Controls should not appear in the downloaded image */
+    @media print{
+      .topbar{display:none !important;}
     }
   </style>
 </head>
@@ -381,100 +429,165 @@
     </svg>
   </div>
 
-  <div class="wrap">
-    <section class="hero">
-      <div class="hero-inner">
-        <div>
-          <span class="badge">🌙 Lebanese Desserts</span>
-          <h1>Ramadan Menu</h1>
-
-          <div class="meta">
-            <div class="pill">🏠 Homemade</div>
-            <div class="pill">📍 Nantes</div>
-            <div class="pill">🚚 Delivery possible</div>
-          </div>
-        </div>
-
-        <div class="rightbox">
-          <h3>Reservations</h3>
-          <p>
-            Orders require <strong>2–3 days</strong> advance reservation.<br>
-            Availability may vary depending on demand.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="grid">
-
-      <div class="card">
-        <div class="imgwrap">
-          <img src="images/1.jpeg" alt="Halwet el Jeben">
-          <div class="overlay"></div>
-          <div class="info">
-            <p class="name">Halwet el Jeben</p>
-            <span class="price">20€</span>
-          </div>
-        </div>
-        <div class="desc">Elegant platter, perfect for iftar gatherings.</div>
-      </div>
-
-      <div class="card highlight">
-        <div class="imgwrap">
-          <img src="images/2.jpeg" alt="Osmaliye Soniye">
-          <div class="overlay"></div>
-          <div class="info">
-            <p class="name">Osmaliye Soniye</p>
-            <div class="price-stack">
-              <span class="price">2€ / piece</span>
-              <span class="price">20€ / platter</span>
-            </div>
-          </div>
-        </div>
-        <div class="desc">Two options available: single pieces or a full platter.</div>
-      </div>
-
-      <div class="card">
-        <div class="imgwrap">
-          <img src="images/3.jpeg" alt="Mfroket Fosto2">
-          <div class="overlay"></div>
-          <div class="info">
-            <p class="name">Mfroket Fosto2</p>
-            <span class="price">25€</span>
-          </div>
-        </div>
-        <div class="desc">Premium pistachio dessert.</div>
-      </div>
-
-      <div class="card">
-        <div class="imgwrap">
-          <img src="images/4.jpeg" alt="Atyef 3asfir">
-          <div class="overlay"></div>
-          <div class="info">
-            <p class="name">Atyef 3asfir</p>
-            <span class="price">15€ / platter</span>
-          </div>
-        </div>
-        <div class="desc">Approximately 15–17 pieces per platter.</div>
-      </div>
-
-      <div class="card">
-        <div class="imgwrap">
-          <img src="images/5.jpeg" alt="Atyb m2leye">
-          <div class="overlay"></div>
-          <div class="info">
-            <p class="name">Atyb m2leye (jbne / ashta / joz)</p>
-            <span class="price">18€ / dozen</span>
-          </div>
-        </div>
-        <div class="desc">Cheese, cream & walnut selection.</div>
-      </div>
-
-    </section>
+  <!-- Controls -->
+  <div class="topbar">
+    <button class="btn" id="sizeLandscape">🖼️ Landscape (1400×780)</button>
+    <button class="btn" id="sizeIG">📱 IG Post (1080×1350)</button>
+    <button class="btn primary" id="downloadBtn">⬇️ Download as PNG</button>
   </div>
 
+  <!-- Centered stage (so you don't need to zoom) -->
+  <div class="stage">
+    <div class="capture-wrap" id="captureWrap">
+      <!-- Only this block is captured in the download -->
+      <div id="capture">
+        <div class="wrap">
+          <section class="hero">
+            <div class="hero-inner">
+              <div>
+                <span class="badge">🌙 Lebanese Desserts</span>
+                <h1>Ramadan Menu</h1>
+
+                <div class="meta">
+                  <div class="pill">🏠 Homemade</div>
+                  <div class="pill">📍 Nantes</div>
+                  <div class="pill">🚚 Delivery possible</div>
+                </div>
+              </div>
+
+              <div class="rightbox">
+                <h3>Reservations</h3>
+                <p>
+                  Orders require <strong>2–3 days</strong> advance reservation.<br>
+                  Availability may vary depending on demand.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section class="grid">
+
+            <div class="card">
+              <div class="imgwrap">
+                <img src="images/1.jpeg" alt="Halwet el Jeben">
+                <div class="overlay"></div>
+                <div class="info">
+                  <p class="name">Halwet el Jeben</p>
+                  <span class="price">20€</span>
+                </div>
+              </div>
+              <div class="desc">Elegant platter, perfect for iftar gatherings.</div>
+            </div>
+
+            <div class="card highlight">
+              <div class="imgwrap">
+                <img src="images/2.jpeg" alt="Osmaliye Soniye">
+                <div class="overlay"></div>
+                <div class="info">
+                  <p class="name">Osmaliye Soniye</p>
+                  <div class="price-stack">
+                    <span class="price">2€ / piece</span>
+                    <span class="price">20€ / platter</span>
+                  </div>
+                </div>
+              </div>
+              <div class="desc">Two options available: single pieces or a full platter.</div>
+            </div>
+
+            <div class="card">
+              <div class="imgwrap">
+                <img src="images/3.jpeg" alt="Mfroket Fosto2">
+                <div class="overlay"></div>
+                <div class="info">
+                  <p class="name">Mfroket Fosto2</p>
+                  <span class="price">25€</span>
+                </div>
+              </div>
+              <div class="desc">Premium pistachio dessert.</div>
+            </div>
+
+            <div class="card">
+              <div class="imgwrap">
+                <img src="images/4.jpeg" alt="Atyef 3asfir">
+                <div class="overlay"></div>
+                <div class="info">
+                  <p class="name">Atyef 3asfir</p>
+                  <span class="price">15€ / platter</span>
+                </div>
+              </div>
+              <div class="desc">Approximately 15–17 pieces per platter.</div>
+            </div>
+
+            <div class="card">
+              <div class="imgwrap">
+                <img src="images/5.jpeg" alt="Atyb m2leye">
+                <div class="overlay"></div>
+                <div class="info">
+                  <p class="name">Atyb m2leye (jbne / ashta / joz)</p>
+                  <span class="price">18€ / dozen</span>
+                </div>
+              </div>
+              <div class="desc">Cheese, cream & walnut selection.</div>
+            </div>
+
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- html2canvas for downloading as PNG -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
   <script>
-    // no footer requested, kept empty on purpose
+    const root = document.documentElement;
+
+    function setCaptureSize(w, h){
+      root.style.setProperty("--cap-w", w + "px");
+      root.style.setProperty("--cap-h", h + "px");
+      fitToScreen();
+    }
+
+    function fitToScreen(){
+      const capW = parseFloat(getComputedStyle(root).getPropertyValue("--cap-w"));
+      const capH = parseFloat(getComputedStyle(root).getPropertyValue("--cap-h"));
+
+      const padding = 28; // breathing space around the capture
+      const vw = window.innerWidth - padding;
+      const vh = window.innerHeight - 140; // leave room for buttons
+
+      const scale = Math.min(vw / capW, vh / capH, 1);
+      root.style.setProperty("--cap-scale", scale.toFixed(4));
+    }
+
+    async function downloadPNG(){
+      const capture = document.getElementById("capture");
+
+      // crisp export: scale 2 (high quality)
+      const canvas = await html2canvas(capture, {
+        backgroundColor: null,
+        scale: 2,
+        useCORS: true
+      });
+
+      const link = document.createElement("a");
+      link.download = "ramadan-menu.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    }
+
+    document.getElementById("downloadBtn").addEventListener("click", downloadPNG);
+
+    document.getElementById("sizeLandscape").addEventListener("click", () => {
+      setCaptureSize(1400, 780);
+    });
+
+    document.getElementById("sizeIG").addEventListener("click", () => {
+      setCaptureSize(1080, 1350);
+    });
+
+    window.addEventListener("resize", fitToScreen);
+    fitToScreen();
   </script>
 </body>
 </html>
