@@ -26,8 +26,6 @@
       color:var(--text);
       min-height:100vh;
       padding:26px 18px 56px;
-
-      /* Global Ramadan vibe */
       background:
         radial-gradient(900px 520px at 12% 10%, rgba(246,211,101,0.25), transparent 60%),
         radial-gradient(820px 520px at 88% 18%, rgba(253,160,133,0.20), transparent 62%),
@@ -37,6 +35,7 @@
 
     .wrap{max-width:1100px;margin:0 auto;}
 
+    /* HERO */
     .hero{
       border:1px solid var(--line);
       background:linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
@@ -44,6 +43,17 @@
       border-radius:26px;
       padding:22px 20px;
       margin-bottom:18px;
+    }
+
+    .hero-inner{
+      display:grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    @media (max-width: 820px){
+      .hero-inner{ grid-template-columns: 1fr; }
     }
 
     .badge{
@@ -62,13 +72,6 @@
       letter-spacing:-0.3px;
     }
 
-    .sub{
-      margin:0;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.45;
-    }
-
     .meta{
       margin-top:10px;
       display:flex;
@@ -83,14 +86,40 @@
       border-radius:999px;
       font-size:13px;
       color:var(--muted);
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      white-space:nowrap;
     }
 
+    .rightbox{
+      border:1px solid rgba(255,255,255,0.10);
+      background:rgba(255,255,255,0.04);
+      border-radius:18px;
+      padding:14px 14px;
+    }
+
+    .rightbox h3{
+      margin:0 0 8px;
+      font-size:14px;
+      letter-spacing:0.2px;
+      color: var(--text);
+      opacity: 0.95;
+    }
+
+    .rightbox p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.55;
+    }
+
+    /* GRID */
     .grid{
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:14px;
     }
-
     @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:560px){
       .grid{grid-template-columns:1fr}
@@ -103,6 +132,15 @@
       background:linear-gradient(180deg,var(--card),rgba(255,255,255,0.03));
       box-shadow:0 14px 30px rgba(0,0,0,0.35);
       overflow:hidden;
+    }
+
+    /* Highlight card (for Osmaliye) */
+    .card.highlight{
+      border-color: rgba(246,211,101,0.40);
+      box-shadow: 0 18px 45px rgba(246,211,101,0.10), 0 14px 30px rgba(0,0,0,0.35);
+      background:
+        radial-gradient(700px 260px at 20% 0%, rgba(246,211,101,0.12), transparent 60%),
+        linear-gradient(180deg,var(--card),rgba(255,255,255,0.03));
     }
 
     .imgwrap{
@@ -120,7 +158,7 @@
     .overlay{
       position:absolute;
       inset:0;
-      background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,0.8));
+      background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,0.82));
     }
 
     .info{
@@ -131,6 +169,7 @@
       display:flex;
       justify-content:space-between;
       align-items:flex-end;
+      gap:10px;
     }
 
     .name{
@@ -146,6 +185,14 @@
       border-radius:999px;
       background:rgba(255,255,255,0.12);
       border:1px solid rgba(255,255,255,0.2);
+      white-space:nowrap;
+    }
+
+    .price-stack{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      align-items:flex-end;
     }
 
     .desc{
@@ -153,6 +200,7 @@
       font-size:13px;
       color:var(--muted);
       border-top:1px solid rgba(255,255,255,0.06);
+      line-height:1.45;
     }
 
     footer{
@@ -168,24 +216,36 @@
 <div class="wrap">
 
   <section class="hero">
-    <span class="badge">🌙 Lebanese Desserts</span>
-    <h1>Ramadan Menu</h1>
-    <p class="sub">
-      Orders require <strong>2–3 days advance reservation</strong>.<br>
-      Availability may vary depending on demand.
-    </p>
+    <div class="hero-inner">
+      <!-- LEFT -->
+      <div>
+        <span class="badge">🌙 Lebanese Desserts</span>
+        <h1>Ramadan Menu</h1>
 
-    <div class="meta">
-      <div class="pill">Homemade</div>
-      <div class="pill">Nantes</div>
+        <div class="meta">
+          <div class="pill">🏠 Homemade</div>
+          <div class="pill">📍 Nantes</div>
+          <div class="pill">🚚 Delivery possible</div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="rightbox">
+        <h3>Reservations</h3>
+        <p>
+          Orders require <strong>2–3 days</strong> advance reservation.<br/>
+          Availability may vary depending on demand.
+        </p>
+      </div>
     </div>
   </section>
 
   <section class="grid">
 
+    <!-- 1 -->
     <div class="card">
       <div class="imgwrap">
-        <img src="images/1.jpg">
+        <img src="images/1.jpg" alt="Halwet el Jeben">
         <div class="overlay"></div>
         <div class="info">
           <p class="name">Halwet el Jeben</p>
@@ -195,21 +255,26 @@
       <div class="desc">Elegant platter, perfect for iftar gatherings.</div>
     </div>
 
-    <div class="card">
+    <!-- 2 (HIGHLIGHT) -->
+    <div class="card highlight">
       <div class="imgwrap">
-        <img src="images/2.jpg">
+        <img src="images/2.jpg" alt="Osmaliye Soniye">
         <div class="overlay"></div>
         <div class="info">
-          <p class="name">Osmlaye Soniye</p>
-          <span class="price">2€ / piece</span>
+          <p class="name">Osmaliye Soniye</p>
+          <div class="price-stack">
+            <span class="price">2€ / piece</span>
+            <span class="price">20€ / platter</span>
+          </div>
         </div>
       </div>
-      <div class="desc">Price per piece — ideal for mixed boxes.</div>
+      <div class="desc">Two options available: single pieces or a full platter.</div>
     </div>
 
+    <!-- 3 -->
     <div class="card">
       <div class="imgwrap">
-        <img src="images/3.jpg">
+        <img src="images/3.jpg" alt="Mfroket Fosto2">
         <div class="overlay"></div>
         <div class="info">
           <p class="name">Mfroket Fosto2</p>
@@ -219,9 +284,10 @@
       <div class="desc">Premium pistachio dessert.</div>
     </div>
 
+    <!-- 4 -->
     <div class="card">
       <div class="imgwrap">
-        <img src="images/4.jpg">
+        <img src="images/4.jpg" alt="Atyef 3asfir">
         <div class="overlay"></div>
         <div class="info">
           <p class="name">Atyef 3asfir</p>
@@ -231,9 +297,10 @@
       <div class="desc">Approximately 15–17 pieces per platter.</div>
     </div>
 
+    <!-- 5 -->
     <div class="card">
       <div class="imgwrap">
-        <img src="images/5.jpg">
+        <img src="images/5.jpg" alt="Atyb m2leye">
         <div class="overlay"></div>
         <div class="info">
           <p class="name">Atyb m2leye (jbne / ashta / joz)</p>
