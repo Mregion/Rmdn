@@ -7,8 +7,8 @@
 
   <style>
     :root{
-      --bg1:#070b14;
-      --bg2:#0a1020;
+      --bg1:#05080f;
+      --bg2:#0b1328;
       --card: rgba(255,255,255,0.07);
       --line: rgba(255,255,255,0.14);
       --text:#f8fafc;
@@ -20,17 +20,54 @@
     }
 
     *{box-sizing:border-box}
+
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
       color:var(--text);
       min-height:100vh;
       padding:26px 18px 56px;
+      overflow-x:hidden;
+
       background:
-        radial-gradient(900px 520px at 12% 10%, rgba(246,211,101,0.25), transparent 60%),
-        radial-gradient(820px 520px at 88% 18%, rgba(253,160,133,0.20), transparent 62%),
-        radial-gradient(900px 650px at 50% 96%, rgba(99,102,241,0.12), transparent 62%),
+        radial-gradient(900px 520px at 10% 15%, rgba(246,211,101,0.35), transparent 60%),
+        radial-gradient(820px 520px at 90% 20%, rgba(253,160,133,0.30), transparent 62%),
+        radial-gradient(900px 650px at 50% 95%, rgba(99,102,241,0.18), transparent 62%),
         linear-gradient(180deg, var(--bg1), var(--bg2));
+    }
+
+    /* Floating Ramadan glow */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:-20%;
+      background:
+        radial-gradient(600px 420px at 20% 30%, rgba(246,211,101,0.22), transparent 70%),
+        radial-gradient(600px 420px at 80% 40%, rgba(253,160,133,0.20), transparent 70%),
+        radial-gradient(700px 520px at 50% 80%, rgba(99,102,241,0.16), transparent 75%);
+      animation: floatGlow 22s ease-in-out infinite alternate;
+      z-index:-2;
+    }
+
+    /* Subtle Islamic geometric texture */
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 44px 44px;
+      opacity:0.25;
+      z-index:-1;
+    }
+
+    @keyframes floatGlow{
+      0%{
+        transform: translateY(-20px) translateX(-10px) scale(1);
+      }
+      100%{
+        transform: translateY(20px) translateX(10px) scale(1.05);
+      }
     }
 
     .wrap{max-width:1100px;margin:0 auto;}
@@ -38,11 +75,12 @@
     /* HERO */
     .hero{
       border:1px solid var(--line);
-      background:linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      background:linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
       box-shadow:var(--shadow);
       border-radius:26px;
       padding:22px 20px;
       margin-bottom:18px;
+      backdrop-filter: blur(6px);
     }
 
     .hero-inner{
@@ -81,7 +119,7 @@
 
     .pill{
       border:1px solid var(--line);
-      background:rgba(255,255,255,0.05);
+      background:rgba(255,255,255,0.06);
       padding:9px 14px;
       border-radius:999px;
       font-size:13px;
@@ -93,10 +131,11 @@
     }
 
     .rightbox{
-      border:1px solid rgba(255,255,255,0.10);
-      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.12);
+      background:rgba(255,255,255,0.06);
       border-radius:18px;
       padding:14px 14px;
+      backdrop-filter: blur(6px);
     }
 
     .rightbox h3{
@@ -104,7 +143,6 @@
       font-size:14px;
       letter-spacing:0.2px;
       color: var(--text);
-      opacity: 0.95;
     }
 
     .rightbox p{
@@ -120,6 +158,7 @@
       grid-template-columns:repeat(3,1fr);
       gap:14px;
     }
+
     @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:560px){
       .grid{grid-template-columns:1fr}
@@ -129,18 +168,17 @@
     .card{
       border:1px solid var(--line);
       border-radius:var(--radius);
-      background:linear-gradient(180deg,var(--card),rgba(255,255,255,0.03));
+      background:linear-gradient(180deg,var(--card),rgba(255,255,255,0.04));
       box-shadow:0 14px 30px rgba(0,0,0,0.35);
       overflow:hidden;
+      backdrop-filter: blur(4px);
     }
 
-    /* Highlight card (for Osmaliye) */
     .card.highlight{
-      border-color: rgba(246,211,101,0.40);
-      box-shadow: 0 18px 45px rgba(246,211,101,0.10), 0 14px 30px rgba(0,0,0,0.35);
-      background:
-        radial-gradient(700px 260px at 20% 0%, rgba(246,211,101,0.12), transparent 60%),
-        linear-gradient(180deg,var(--card),rgba(255,255,255,0.03));
+      border-color: rgba(246,211,101,0.45);
+      box-shadow:
+        0 20px 50px rgba(246,211,101,0.15),
+        0 14px 30px rgba(0,0,0,0.35);
     }
 
     .imgwrap{
@@ -158,7 +196,7 @@
     .overlay{
       position:absolute;
       inset:0;
-      background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,0.82));
+      background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,0.85));
     }
 
     .info{
@@ -183,8 +221,8 @@
       font-size:14px;
       padding:6px 10px;
       border-radius:999px;
-      background:rgba(255,255,255,0.12);
-      border:1px solid rgba(255,255,255,0.2);
+      background:rgba(255,255,255,0.14);
+      border:1px solid rgba(255,255,255,0.22);
       white-space:nowrap;
     }
 
@@ -217,7 +255,6 @@
 
   <section class="hero">
     <div class="hero-inner">
-      <!-- LEFT -->
       <div>
         <span class="badge">🌙 Lebanese Desserts</span>
         <h1>Ramadan Menu</h1>
@@ -229,11 +266,10 @@
         </div>
       </div>
 
-      <!-- RIGHT -->
       <div class="rightbox">
         <h3>Reservations</h3>
         <p>
-          Orders require <strong>2–3 days</strong> advance reservation.<br/>
+          Orders require <strong>2–3 days</strong> advance reservation.<br>
           Availability may vary depending on demand.
         </p>
       </div>
@@ -242,10 +278,9 @@
 
   <section class="grid">
 
-    <!-- 1 -->
     <div class="card">
       <div class="imgwrap">
-        <img src="images/1.jpeg" alt="Halwet el Jeben">
+        <img src="images/1.jpeg">
         <div class="overlay"></div>
         <div class="info">
           <p class="name">Halwet el Jeben</p>
@@ -255,10 +290,9 @@
       <div class="desc">Elegant platter, perfect for iftar gatherings.</div>
     </div>
 
-    <!-- 2 (HIGHLIGHT) -->
     <div class="card highlight">
       <div class="imgwrap">
-        <img src="images/2.jpeg" alt="Osmaliye Soniye">
+        <img src="images/2.jpeg">
         <div class="overlay"></div>
         <div class="info">
           <p class="name">Osmaliye Soniye</p>
@@ -271,10 +305,9 @@
       <div class="desc">Two options available: single pieces or a full platter.</div>
     </div>
 
-    <!-- 3 -->
     <div class="card">
       <div class="imgwrap">
-        <img src="images/3.jpeg" alt="Mfroket Fosto2">
+        <img src="images/3.jpeg">
         <div class="overlay"></div>
         <div class="info">
           <p class="name">Mfroket Fosto2</p>
@@ -284,10 +317,9 @@
       <div class="desc">Premium pistachio dessert.</div>
     </div>
 
-    <!-- 4 -->
     <div class="card">
       <div class="imgwrap">
-        <img src="images/4.jpeg" alt="Atyef 3asfir">
+        <img src="images/4.jpeg">
         <div class="overlay"></div>
         <div class="info">
           <p class="name">Atyef 3asfir</p>
@@ -297,10 +329,9 @@
       <div class="desc">Approximately 15–17 pieces per platter.</div>
     </div>
 
-    <!-- 5 -->
     <div class="card">
       <div class="imgwrap">
-        <img src="images/5.jpeg" alt="Atyb m2leye">
+        <img src="images/5.jpeg">
         <div class="overlay"></div>
         <div class="info">
           <p class="name">Atyb m2leye (jbne / ashta / joz)</p>
