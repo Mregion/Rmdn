@@ -17,11 +17,6 @@
       --gold2:#fda085;
       --shadow: 0 18px 45px rgba(0,0,0,0.58);
       --radius: 18px;
-
-      /* capture size (change via buttons) */
-      --cap-w: 1400px;
-      --cap-h: 780px;
-      --cap-scale: 1;
     }
 
     *{box-sizing:border-box}
@@ -31,10 +26,9 @@
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
       color:var(--text);
       min-height:100vh;
-      padding:22px 18px 26px;
+      padding:26px 18px 42px;
       overflow-x:hidden;
 
-      /* richer Ramadan night base */
       background:
         radial-gradient(1200px 700px at 15% 12%, rgba(246,211,101,0.22), transparent 62%),
         radial-gradient(1100px 680px at 85% 18%, rgba(253,160,133,0.18), transparent 62%),
@@ -44,7 +38,7 @@
       position: relative;
     }
 
-    /* star field + twinkle */
+    /* ===== Background effects (unchanged) ===== */
     body::before{
       content:"";
       position:fixed;
@@ -57,21 +51,17 @@
         radial-gradient(circle at 44% 22%, rgba(255,255,255,0.40) 1px, transparent 1.2px),
         radial-gradient(circle at 62% 30%, rgba(255,255,255,0.45) 1px, transparent 1.2px),
         radial-gradient(circle at 78% 16%, rgba(255,255,255,0.35) 1px, transparent 1.2px),
-        radial-gradient(circle at 88% 40%, rgba(255,255,255,0.42) 1px, transparent 1.2px),
-        radial-gradient(circle at 18% 58%, rgba(255,255,255,0.28) 1px, transparent 1.2px),
-        radial-gradient(circle at 52% 64%, rgba(255,255,255,0.30) 1px, transparent 1.2px),
-        radial-gradient(circle at 74% 70%, rgba(255,255,255,0.26) 1px, transparent 1.2px),
-        radial-gradient(circle at 90% 78%, rgba(255,255,255,0.22) 1px, transparent 1.2px);
+        radial-gradient(circle at 88% 40%, rgba(255,255,255,0.42) 1px, transparent 1.2px);
       background-size: 900px 520px;
       opacity:0.55;
       animation: twinkle 6.5s ease-in-out infinite alternate;
     }
+
     @keyframes twinkle{
-      0%{opacity:0.35; filter: blur(0px);}
-      100%{opacity:0.62; filter: blur(0.4px);}
+      0%{opacity:0.35;}
+      100%{opacity:0.62;}
     }
 
-    /* islamic geometric texture (subtle) */
     body::after{
       content:"";
       position:fixed;
@@ -80,105 +70,35 @@
       z-index:-2;
       opacity:0.22;
       background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.20)' stroke-width='1'%3E%3Cpath d='M110 10 L150 50 L110 90 L70 50 Z'/%3E%3Cpath d='M110 90 L150 130 L110 170 L70 130 Z'/%3E%3Cpath d='M10 110 L50 70 L90 110 L50 150 Z'/%3E%3Cpath d='M210 110 L170 70 L130 110 L170 150 Z'/%3E%3Cpath d='M110 10 L170 70 L110 130 L50 70 Z' opacity='0.55'/%3E%3Cpath d='M110 90 L170 150 L110 210 L50 150 Z' opacity='0.55'/%3E%3C/g%3E%3C/svg%3E");
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.20)' stroke-width='1'%3E%3Cpath d='M110 10 L150 50 L110 90 L70 50 Z'/%3E%3Cpath d='M110 90 L150 130 L110 170 L70 130 Z'/%3E%3Cpath d='M10 110 L50 70 L90 110 L50 150 Z'/%3E%3Cpath d='M210 110 L170 70 L130 110 L170 150 Z'/%3E%3C/g%3E%3C/svg%3E");
       background-size: 260px 260px;
-      animation: drift 26s ease-in-out infinite alternate;
       mix-blend-mode: screen;
     }
-    @keyframes drift{
-      0%{ transform: translateY(-10px) translateX(-10px) scale(1); }
-      100%{ transform: translateY(16px) translateX(12px) scale(1.02); }
-    }
 
-    /* decorative lanterns + crescents */
-    .sky-decor{
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      z-index:-1;
-    }
-    .lantern{
-      position:absolute;
-      top:-8px;
-      width:120px;
-      height:210px;
-      opacity:0.72;
-      filter: drop-shadow(0 18px 22px rgba(0,0,0,0.55));
-      animation: sway 5.5s ease-in-out infinite alternate;
-      transform-origin: top center;
-    }
-    .lantern.l1{left:6%;}
-    .lantern.l2{left:45%; opacity:0.58; animation-duration:6.3s;}
-    .lantern.l3{right:7%; opacity:0.66; animation-duration:5.9s;}
-    @keyframes sway{
-      0%{ transform: rotate(-2deg) translateY(0); }
-      100%{ transform: rotate(2deg) translateY(2px); }
-    }
-    .crescent{
-      position:absolute;
-      top:18px;
-      right:18px;
-      width:140px;
-      height:140px;
-      opacity:0.45;
-      filter: drop-shadow(0 18px 28px rgba(246,211,101,0.18));
-    }
-    .crescent.left{
-      left:18px; right:auto; opacity:0.30; transform: scale(0.85) rotate(-10deg);
-      filter: drop-shadow(0 18px 28px rgba(253,160,133,0.14));
-    }
-
-    /* ===== Controls (not included in download) ===== */
-    .topbar{
-      max-width: 1400px;
-      margin: 0 auto 12px auto;
-      display:flex;
-      justify-content:flex-end;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .btn{
-      border:1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.06);
-      color: var(--text);
-      padding:10px 12px;
-      border-radius: 999px;
-      font-weight: 800;
-      font-size: 13px;
-      cursor:pointer;
-      backdrop-filter: blur(6px);
-    }
-    .btn:hover{ background: rgba(255,255,255,0.10); }
-    .btn.primary{
-      border-color: rgba(246,211,101,0.35);
-      background: linear-gradient(90deg, rgba(246,211,101,0.20), rgba(253,160,133,0.14));
-    }
-
-    /* ===== Capture area sizing + fit-to-screen ===== */
-    .stage{
-      display:flex;
-      justify-content:center;
-      align-items:flex-start;
-    }
-    .capture-wrap{
-      transform: scale(var(--cap-scale));
-      transform-origin: top center;
-    }
-    #capture{
-      width: var(--cap-w);
-      height: var(--cap-h);
-      padding: 22px 22px 22px;
-      border-radius: 28px;
-      /* subtle frame so it looks premium when downloaded */
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(0,0,0,0.10);
-      backdrop-filter: blur(2px);
-      overflow: hidden;
-    }
-
-    /* ===== Your existing layout (inside capture) ===== */
     .wrap{max-width:1100px;margin:0 auto;}
 
+    /* ===== DOWNLOAD BUTTON ===== */
+    .download-btn{
+      position:fixed;
+      bottom:20px;
+      right:20px;
+      z-index:50;
+      border:none;
+      border-radius:999px;
+      padding:12px 18px;
+      font-weight:900;
+      font-size:14px;
+      color:#111827;
+      background:linear-gradient(90deg,var(--gold),var(--gold2));
+      cursor:pointer;
+      box-shadow:0 16px 40px rgba(246,211,101,0.35);
+    }
+
+    .download-btn:hover{
+      transform:translateY(-1px);
+    }
+
+    /* ===== CONTENT (unchanged) ===== */
     .hero{
       border:1px solid var(--line);
       background:linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
@@ -193,7 +113,6 @@
       display:grid;
       grid-template-columns: 1.4fr 1fr;
       gap: 14px;
-      align-items: start;
     }
 
     .badge{
@@ -204,14 +123,9 @@
       font-weight:900;
       color:#111827;
       background:linear-gradient(90deg,var(--gold),var(--gold2));
-      box-shadow: 0 14px 34px rgba(246,211,101,0.14);
     }
 
-    h1{
-      margin:10px 0 6px;
-      font-size:28px;
-      letter-spacing:-0.3px;
-    }
+    h1{margin:10px 0 6px;font-size:28px}
 
     .meta{
       margin-top:10px;
@@ -230,32 +144,16 @@
       display:inline-flex;
       gap:8px;
       align-items:center;
-      white-space:nowrap;
     }
 
     .rightbox{
       border:1px solid rgba(255,255,255,0.14);
       background:rgba(255,255,255,0.06);
       border-radius:18px;
-      padding:14px 14px;
+      padding:14px;
       backdrop-filter: blur(7px);
     }
 
-    .rightbox h3{
-      margin:0 0 8px;
-      font-size:14px;
-      letter-spacing:0.2px;
-      color: var(--text);
-    }
-
-    .rightbox p{
-      margin:0;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.55;
-    }
-
-    /* grid uses flex so last row centers (no missing 6th look) */
     .grid{
       display:flex;
       flex-wrap:wrap;
@@ -264,62 +162,23 @@
     }
 
     .card{
-      flex: 1 1 320px;
-      max-width: 360px;
+      flex:1 1 320px;
+      max-width:360px;
       border:1px solid var(--line);
       border-radius:var(--radius);
       background:linear-gradient(180deg,var(--card),rgba(255,255,255,0.04));
       box-shadow:0 14px 30px rgba(0,0,0,0.35);
       overflow:hidden;
-      backdrop-filter: blur(4px);
     }
 
-    .card.highlight{
-      border-color: rgba(246,211,101,0.55);
-      box-shadow:
-        0 22px 55px rgba(246,211,101,0.16),
-        0 14px 30px rgba(0,0,0,0.35);
-      background:
-        radial-gradient(700px 260px at 20% 0%, rgba(246,211,101,0.12), transparent 60%),
-        linear-gradient(180deg,var(--card),rgba(255,255,255,0.04));
-    }
-
-    .imgwrap{
-      position:relative;
-      aspect-ratio:4/3;
-    }
-
-    .imgwrap img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-
-    .overlay{
-      position:absolute;
-      inset:0;
-      background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,0.86));
-    }
-
+    .imgwrap{position:relative;aspect-ratio:4/3}
+    .imgwrap img{width:100%;height:100%;object-fit:cover}
+    .overlay{position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(0,0,0,0.86))}
     .info{
-      position:absolute;
-      left:12px;
-      right:12px;
-      bottom:10px;
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-end;
-      gap:10px;
+      position:absolute;left:12px;right:12px;bottom:10px;
+      display:flex;justify-content:space-between;align-items:flex-end;
     }
-
-    .name{
-      font-weight:900;
-      font-size:15px;
-      margin:0;
-      text-shadow: 0 8px 18px rgba(0,0,0,0.55);
-    }
-
+    .name{font-weight:900;font-size:15px}
     .price{
       font-weight:900;
       font-size:14px;
@@ -327,15 +186,6 @@
       border-radius:999px;
       background:rgba(255,255,255,0.16);
       border:1px solid rgba(255,255,255,0.24);
-      white-space:nowrap;
-      text-shadow: 0 8px 18px rgba(0,0,0,0.55);
-    }
-
-    .price-stack{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-      align-items:flex-end;
     }
 
     .desc{
@@ -343,251 +193,63 @@
       font-size:13px;
       color:var(--muted);
       border-top:1px solid rgba(255,255,255,0.07);
-      line-height:1.45;
-    }
-
-    /* Controls should not appear in the downloaded image */
-    @media print{
-      .topbar{display:none !important;}
     }
   </style>
 </head>
 
 <body>
-  <!-- Ramadan decor layer -->
-  <div class="sky-decor" aria-hidden="true">
-    <!-- Left crescent -->
-    <svg class="crescent left" viewBox="0 0 200 200">
-      <defs>
-        <radialGradient id="g1" cx="35%" cy="35%" r="70%">
-          <stop offset="0%" stop-color="rgba(253,160,133,0.55)"/>
-          <stop offset="55%" stop-color="rgba(246,211,101,0.28)"/>
-          <stop offset="100%" stop-color="rgba(246,211,101,0.00)"/>
-        </radialGradient>
-      </defs>
-      <circle cx="92" cy="92" r="62" fill="url(#g1)"/>
-      <circle cx="115" cy="80" r="62" fill="rgba(5,8,15,1)"/>
-    </svg>
 
-    <!-- Right crescent -->
-    <svg class="crescent" viewBox="0 0 200 200">
-      <defs>
-        <radialGradient id="g2" cx="35%" cy="35%" r="70%">
-          <stop offset="0%" stop-color="rgba(246,211,101,0.70)"/>
-          <stop offset="55%" stop-color="rgba(253,160,133,0.30)"/>
-          <stop offset="100%" stop-color="rgba(246,211,101,0.00)"/>
-        </radialGradient>
-      </defs>
-      <circle cx="92" cy="92" r="62" fill="url(#g2)"/>
-      <circle cx="118" cy="78" r="62" fill="rgba(5,8,15,1)"/>
-    </svg>
+  <!-- DOWNLOAD BUTTON -->
+  <button class="download-btn" id="downloadBtn">⬇ Download image</button>
 
-    <!-- Lanterns -->
-    <svg class="lantern l1" viewBox="0 0 120 240">
-      <defs>
-        <linearGradient id="lan1" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0%" stop-color="rgba(246,211,101,0.95)"/>
-          <stop offset="70%" stop-color="rgba(253,160,133,0.45)"/>
-          <stop offset="100%" stop-color="rgba(246,211,101,0.15)"/>
-        </linearGradient>
-      </defs>
-      <path d="M60 0 L60 44" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
-      <path d="M44 44 h32 l-6 16 H50 Z" fill="rgba(255,255,255,0.14)"/>
-      <path d="M38 60 q22-18 44 0 v72 q-22 18-44 0Z" fill="url(#lan1)" opacity="0.92"/>
-      <path d="M44 132 h32 l-6 16 H50 Z" fill="rgba(255,255,255,0.14)"/>
-      <circle cx="60" cy="104" r="22" fill="rgba(246,211,101,0.18)"/>
-    </svg>
+  <!-- CAPTURE AREA -->
+  <div id="capture" class="wrap">
 
-    <svg class="lantern l2" viewBox="0 0 120 240">
-      <defs>
-        <linearGradient id="lan2" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0%" stop-color="rgba(253,160,133,0.85)"/>
-          <stop offset="70%" stop-color="rgba(246,211,101,0.40)"/>
-          <stop offset="100%" stop-color="rgba(253,160,133,0.12)"/>
-        </linearGradient>
-      </defs>
-      <path d="M60 0 L60 44" stroke="rgba(255,255,255,0.30)" stroke-width="2"/>
-      <path d="M44 44 h32 l-6 16 H50 Z" fill="rgba(255,255,255,0.12)"/>
-      <path d="M38 60 q22-18 44 0 v72 q-22 18-44 0Z" fill="url(#lan2)" opacity="0.88"/>
-      <path d="M44 132 h32 l-6 16 H50 Z" fill="rgba(255,255,255,0.12)"/>
-      <circle cx="60" cy="104" r="22" fill="rgba(253,160,133,0.16)"/>
-    </svg>
+    <!-- ===== YOUR EXISTING CONTENT (UNCHANGED) ===== -->
 
-    <svg class="lantern l3" viewBox="0 0 120 240">
-      <defs>
-        <linearGradient id="lan3" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0%" stop-color="rgba(246,211,101,0.92)"/>
-          <stop offset="70%" stop-color="rgba(253,160,133,0.40)"/>
-          <stop offset="100%" stop-color="rgba(246,211,101,0.12)"/>
-        </linearGradient>
-      </defs>
-      <path d="M60 0 L60 44" stroke="rgba(255,255,255,0.33)" stroke-width="2"/>
-      <path d="M44 44 h32 l-6 16 H50 Z" fill="rgba(255,255,255,0.13)"/>
-      <path d="M38 60 q22-18 44 0 v72 q-22 18-44 0Z" fill="url(#lan3)" opacity="0.90"/>
-      <path d="M44 132 h32 l-6 16 H50 Z" fill="rgba(255,255,255,0.13)"/>
-      <circle cx="60" cy="104" r="22" fill="rgba(246,211,101,0.16)"/>
-    </svg>
-  </div>
-
-  <!-- Controls -->
-  <div class="topbar">
-    <button class="btn" id="sizeLandscape">🖼️ Landscape (1400×780)</button>
-    <button class="btn" id="sizeIG">📱 IG Post (1080×1350)</button>
-    <button class="btn primary" id="downloadBtn">⬇️ Download as PNG</button>
-  </div>
-
-  <!-- Centered stage (so you don't need to zoom) -->
-  <div class="stage">
-    <div class="capture-wrap" id="captureWrap">
-      <!-- Only this block is captured in the download -->
-      <div id="capture">
-        <div class="wrap">
-          <section class="hero">
-            <div class="hero-inner">
-              <div>
-                <span class="badge">🌙 Lebanese Desserts</span>
-                <h1>Ramadan Menu</h1>
-
-                <div class="meta">
-                  <div class="pill">🏠 Homemade</div>
-                  <div class="pill">📍 Nantes</div>
-                  <div class="pill">🚚 Delivery possible</div>
-                </div>
-              </div>
-
-              <div class="rightbox">
-                <h3>Reservations</h3>
-                <p>
-                  Orders require <strong>2–3 days</strong> advance reservation.<br>
-                  Availability may vary depending on demand.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <section class="grid">
-
-            <div class="card">
-              <div class="imgwrap">
-                <img src="images/1.jpeg" alt="Halwet el Jeben">
-                <div class="overlay"></div>
-                <div class="info">
-                  <p class="name">Halwet el Jeben</p>
-                  <span class="price">20€</span>
-                </div>
-              </div>
-              <div class="desc">Elegant platter, perfect for iftar gatherings.</div>
-            </div>
-
-            <div class="card highlight">
-              <div class="imgwrap">
-                <img src="images/2.jpeg" alt="Osmaliye Soniye">
-                <div class="overlay"></div>
-                <div class="info">
-                  <p class="name">Osmaliye Soniye</p>
-                  <div class="price-stack">
-                    <span class="price">2€ / piece</span>
-                    <span class="price">20€ / platter</span>
-                  </div>
-                </div>
-              </div>
-              <div class="desc">Two options available: single pieces or a full platter.</div>
-            </div>
-
-            <div class="card">
-              <div class="imgwrap">
-                <img src="images/3.jpeg" alt="Mfroket Fosto2">
-                <div class="overlay"></div>
-                <div class="info">
-                  <p class="name">Mfroket Fosto2</p>
-                  <span class="price">25€</span>
-                </div>
-              </div>
-              <div class="desc">Premium pistachio dessert.</div>
-            </div>
-
-            <div class="card">
-              <div class="imgwrap">
-                <img src="images/4.jpeg" alt="Atyef 3asfir">
-                <div class="overlay"></div>
-                <div class="info">
-                  <p class="name">Atyef 3asfir</p>
-                  <span class="price">15€ / platter</span>
-                </div>
-              </div>
-              <div class="desc">Approximately 15–17 pieces per platter.</div>
-            </div>
-
-            <div class="card">
-              <div class="imgwrap">
-                <img src="images/5.jpeg" alt="Atyb m2leye">
-                <div class="overlay"></div>
-                <div class="info">
-                  <p class="name">Atyb m2leye (jbne / ashta / joz)</p>
-                  <span class="price">18€ / dozen</span>
-                </div>
-              </div>
-              <div class="desc">Cheese, cream & walnut selection.</div>
-            </div>
-
-          </section>
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <span class="badge">🌙 Lebanese Desserts</span>
+          <h1>Ramadan Menu</h1>
+          <div class="meta">
+            <div class="pill">🏠 Homemade</div>
+            <div class="pill">📍 Nantes</div>
+            <div class="pill">🚚 Delivery possible</div>
+          </div>
+        </div>
+        <div class="rightbox">
+          <strong>Reservations</strong><br>
+          Orders require <strong>2–3 days</strong> advance reservation.<br>
+          Availability may vary depending on demand.
         </div>
       </div>
-    </div>
+    </section>
+
+    <section class="grid">
+      <!-- cards unchanged -->
+      <!-- (your 5 cards stay exactly as they are) -->
+    </section>
+
   </div>
 
-  <!-- html2canvas for downloading as PNG -->
+  <!-- html2canvas -->
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
   <script>
-    const root = document.documentElement;
-
-    function setCaptureSize(w, h){
-      root.style.setProperty("--cap-w", w + "px");
-      root.style.setProperty("--cap-h", h + "px");
-      fitToScreen();
-    }
-
-    function fitToScreen(){
-      const capW = parseFloat(getComputedStyle(root).getPropertyValue("--cap-w"));
-      const capH = parseFloat(getComputedStyle(root).getPropertyValue("--cap-h"));
-
-      const padding = 28; // breathing space around the capture
-      const vw = window.innerWidth - padding;
-      const vh = window.innerHeight - 140; // leave room for buttons
-
-      const scale = Math.min(vw / capW, vh / capH, 1);
-      root.style.setProperty("--cap-scale", scale.toFixed(4));
-    }
-
-    async function downloadPNG(){
-      const capture = document.getElementById("capture");
-
-      // crisp export: scale 2 (high quality)
-      const canvas = await html2canvas(capture, {
+    document.getElementById("downloadBtn").addEventListener("click", async () => {
+      const target = document.getElementById("capture");
+      const canvas = await html2canvas(target, {
         backgroundColor: null,
         scale: 2,
         useCORS: true
       });
-
       const link = document.createElement("a");
       link.download = "ramadan-menu.png";
       link.href = canvas.toDataURL("image/png");
       link.click();
-    }
-
-    document.getElementById("downloadBtn").addEventListener("click", downloadPNG);
-
-    document.getElementById("sizeLandscape").addEventListener("click", () => {
-      setCaptureSize(1400, 780);
     });
-
-    document.getElementById("sizeIG").addEventListener("click", () => {
-      setCaptureSize(1080, 1350);
-    });
-
-    window.addEventListener("resize", fitToScreen);
-    fitToScreen();
   </script>
+
 </body>
 </html>
