@@ -226,7 +226,7 @@
       box-shadow: 0 14px 34px rgba(246,211,101,0.14);
     }
 
-    /* small image next to Ramadan Menu */
+    /* small image next to Ramadan Menu (NOW images/6.jpeg) */
     .title-row{
       display:flex;
       align-items:center;
@@ -325,26 +325,27 @@
       aspect-ratio:4/3;
     }
 
-    .imgwrap img{
+    /* ✅ ONLY main dessert photo is full-size */
+    .imgwrap img.main-photo{
       width:100%;
       height:100%;
       object-fit:cover;
       display:block;
     }
 
-    /* ✅ NEW: same top photo as a corner thumbnail on each dessert image */
+    /* ✅ corner small photo badge (NOW images/6.jpeg) */
     .corner-thumb{
       position:absolute;
       top:8px;
       right:8px;
       width:28px;
       height:28px;
-      border-radius:6px;
+      border-radius:7px;
       object-fit:cover;
-      border:1px solid rgba(255,255,255,0.25);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.45);
       z-index:5;
-      user-select:none;
+      border:1px solid rgba(255,255,255,0.35);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.45);
+      pointer-events:none;
     }
 
     .overlay{
@@ -510,7 +511,7 @@
             <div class="card">
               <div class="imgwrap">
                 <img class="corner-thumb" src="images/6.jpeg" alt="">
-                <img src="images/1.jpeg" alt="Halwet el Jeben">
+                <img class="main-photo" src="images/1.jpeg" alt="Halwet el Jeben">
                 <div class="overlay"></div>
                 <div class="info">
                   <p class="name">Halewet el Jebn</p>
@@ -523,7 +524,7 @@
             <div class="card highlight">
               <div class="imgwrap">
                 <img class="corner-thumb" src="images/6.jpeg" alt="">
-                <img src="images/2.jpeg" alt="Osmaliye Soniye">
+                <img class="main-photo" src="images/2.jpeg" alt="Osmaliye Soniye">
                 <div class="overlay"></div>
                 <div class="info">
                   <p class="name">Osmaliyyeh</p>
@@ -539,7 +540,7 @@
             <div class="card">
               <div class="imgwrap">
                 <img class="corner-thumb" src="images/6.jpeg" alt="">
-                <img src="images/3.jpeg" alt="Mfroket Fosto2">
+                <img class="main-photo" src="images/3.jpeg" alt="Mfroket Fosto2">
                 <div class="overlay"></div>
                 <div class="info">
                   <p class="name">Mafroukeh Pistache</p>
@@ -552,7 +553,7 @@
             <div class="card">
               <div class="imgwrap">
                 <img class="corner-thumb" src="images/6.jpeg" alt="">
-                <img src="images/4.jpeg" alt="Atyef 3asfir">
+                <img class="main-photo" src="images/4.jpeg" alt="Atyef 3asfir">
                 <div class="overlay"></div>
                 <div class="info">
                   <p class="name">Qatayef Asafiri</p>
@@ -565,7 +566,7 @@
             <div class="card">
               <div class="imgwrap">
                 <img class="corner-thumb" src="images/6.jpeg" alt="">
-                <img src="images/5.jpeg" alt="Atyb m2leye">
+                <img class="main-photo" src="images/5.jpeg" alt="Atyb m2leye">
                 <div class="overlay"></div>
                 <div class="info">
                   <p class="name">Fried Qatayef</p>
