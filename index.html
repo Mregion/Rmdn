@@ -194,25 +194,6 @@
       margin:0 auto;
     }
 
-    /* ===== Download button ===== */
-    /*.download-btn{
-      position:fixed;
-      right:18px;
-      bottom:18px;
-      z-index:50;
-      border:none;
-      border-radius:999px;
-      padding:12px 16px;
-      font-weight:900;
-      font-size:14px;
-      color:#111827;
-      background:linear-gradient(90deg,var(--gold),var(--gold2));
-      cursor:pointer;
-      box-shadow:0 16px 40px rgba(246,211,101,0.30);
-    }
-    .download-btn:hover{ transform: translateY(-1px); }
-    .hide-for-capture{ display:none !important; }
-*/
     /* HERO */
     .hero{
       border:1px solid var(--line);
@@ -245,15 +226,15 @@
       box-shadow: 0 14px 34px rgba(246,211,101,0.14);
     }
 
-    /* ===== NEW: small image next to Ramadan Menu ===== */
+    /* small image next to Ramadan Menu */
     .title-row{
       display:flex;
       align-items:center;
       gap:10px;
     }
     .title-thumb{
-      width:44px;
-      height:44px;
+      width:55px;
+      height:55px;
       border-radius:14px;
       object-fit:cover;
       border:1px solid rgba(255,255,255,0.18);
@@ -351,7 +332,7 @@
       display:block;
     }
 
-    /* ===== NEW: small ATER badge on each item (inside image) ===== */
+    /* small ATER badge on each item (inside image) */
     .ater-badge{
       position:absolute;
       top:10px;
@@ -505,7 +486,7 @@
     </svg>
   </div>
 
-  <button class="download-btn" id="downloadBtn">⬇ Download image (HD)</button>
+  <!-- ✅ REMOVED: download button (never appears) -->
 
   <div class="stage">
     <div id="capture">
@@ -517,7 +498,6 @@
               <div>
                 <span class="badge">🌙 Lebanese Desserts</span>
 
-                <!-- ✅ ONLY ADDITION: small image next to Ramadan Menu -->
                 <div class="title-row">
                   <h1>Ramadan Menu</h1>
                   <img class="title-thumb" src="images/6.jpeg" alt="Menu preview">
@@ -617,27 +597,6 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-  <script>
-    document.getElementById("downloadBtn").addEventListener("click", async () => {
-      const btn = document.getElementById("downloadBtn");
-      btn.classList.add("hide-for-capture");
-
-      const poster = document.getElementById("poster");
-
-      const canvas = await html2canvas(poster, {
-        backgroundColor: null,
-        scale: 3,
-        useCORS: true
-      });
-
-      const link = document.createElement("a");
-      link.download = "ramadan-menu-HD.png";
-      link.href = canvas.toDataURL("image/png");
-      link.click();
-
-      btn.classList.remove("hide-for-capture");
-    });
-  </script>
+  <!-- ✅ REMOVED: html2canvas script + download code (never runs) -->
 </body>
 </html>
