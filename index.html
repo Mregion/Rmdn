@@ -331,6 +331,9 @@
       object-fit:cover;
       display:block;
     }
+    .imgwrap img.nozoom{
+      object-fit: contain;   /* ✅ only image 1 no zoom */
+    }
 
     /* small ATER badge on each item (inside image) */
     .ater-badge{
@@ -524,7 +527,7 @@
             <div class="card">
               <div class="imgwrap">
                 <div class="ater-badge"><i>✨</i>+ATER</div>
-                <img src="images/1.jpeg" alt="Halwet el Jeben">
+                <img src="images/1.jpeg" class="nozoom" alt="Halwet el Jeben">
                 <div class="overlay"></div>
                 <div class="info">
                   <p class="name">Halewet el Jebn</p>
